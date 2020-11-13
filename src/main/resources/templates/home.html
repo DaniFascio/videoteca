@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<!--
+file html utilizzato per la visualizzazione di tutti i film in modo ridotto su una tabella prendendo le informazioni dal DB.
+La tabella è costituita dai vari campi che definiscono le caratteristiche del film e da una colonna actions contenente
+i Buttons view,edit,delete. Il view prendendo l'id del film selezionato porta alla pagina view.html, e la stessa cosa gli
+altri due che portano alle relative pagine.
+Infine si trova anche un Button Insert che porta alla pagina insert.html per inserire un film.
+
+
+-->
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>HOME</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+          crossorigin="anonymous"/>
+</head>
+
+<style>
+
+    body{
+        background-color:#d3dded ;
+    }
+
+    table {
+        border-collapse: collapse;
+
+    }
+
+    td, th {
+        border: 4px solid #ddd;
+        padding: 2px;
+        height: 50px;
+        vertical-align: middle;
+        background-color: #6d8da1;
+    }
+</style>
+
+<body>
+<div class="row">
+<div class="col-1 p-1"></div>
+<div class="col-10 p-1" > <div class="table-responsive">
+
+
+    <h1 align="left">Movies List</h1>
+
+
+
+
+<table align="left">
+
+    <tr>
+        <th>Title</th>
+        <!--  <th>Actors</th>
+          <th>Description</th>-->
+          <th>Duration</th>
+          <th>Genre</th>
+          <th>PublishYear</th>
+          <th>Languages</th>
+          <th>Price</th>
+        <!-- <th>Subtitles</th>-->
+
+        <th>Actions
+
+            <a
+                    href="/insert/">
+                <button>Insert</button>
+            </a>
+        </th>
+    </tr>
+
+
+
+
+    <tr th:each="movie:${movies}">
+        <td th:text="${movie.title}"></td>
+        <!--<td th:text="${#strings.listJoin(movie.actors,'; ')}"></td>
+             <td th:text="${movie.description}"></td>-->
+          <td th:text="${movie.duration}"></td>
+          <td th:text="${movie.genre}"></td>
+          <td th:text="${movie.publishYear}"></td>
+          <td th:text="${#strings.arrayJoin(movie.languages,'; ')}"></td>
+          <td th:text="${movie.price}"></td>
+        <!--  <td th:text="${#strings.arrayJoin(movie.subtitles,'; ')}"></td>-->
+
+
+          <td><a
+                  th:href="'/view/?id='+${movie.id}">
+              <button>View</button>
+          </a><a
+                  th:href="'/update/?id='+${movie.id}">
+              <button>Edit</button>
+          </a> <a
+                  th:href="'/delete/?id='+${movie.id}">
+              <button>Delete</button>
+          </a></td>
+
+
+
+  </table>
+
+
+
+  </div>
+  </div>
+  </div>
+  </body>
+  </html>

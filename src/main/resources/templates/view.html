@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<!--
+file html utilizzato per la visualizzazione di un solo film ottenendo l'id del film da visualizzare dalla pagina home.
+successivamente permette di tornare alla home tramite apposito Button.
+
+
+-->
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>VIEW</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+          crossorigin="anonymous"/>
+</head>
+
+<style>
+    h1{
+        text-align: center;
+    }
+
+    body{
+        background-color:#59739e ;
+    }
+
+    table {
+        border-collapse: collapse;
+
+    }
+
+    td, th {
+        border: 4px solid #ddd;
+        padding: 2px;
+        height: 50px;
+        vertical-align: middle;
+        background-color: #93a9cf;
+    }
+</style>
+<body>
+
+<h1>Movie:</h1>
+
+<div class="row">
+    <div class="col-1 p-1"></div>
+    <div class="col-10 p-1" > <div class="table-responsive">
+
+
+
+    <table>
+
+        <tr>
+            <th>Title</th>
+            <th>Duration</th>
+            <th>Genre</th>
+            <th>Actors</th>
+            <th>Description</th>
+            <th>PublishYear</th>
+            <th>Languages</th>
+            <th>Subtitles</th>
+            <th>Price</th>
+
+
+        </tr>
+
+
+
+
+        <tr>
+            <td th:text="${movie.title}"></td>
+            <td th:text="${movie.duration}"></td>
+            <td th:text="${movie.genre}"></td>
+            <td th:text="${#strings.listJoin(movie.actors,'; ')}"></td>
+            <td th:text="${movie.description}"></td>
+            <td th:text="${movie.publishYear}"></td>
+            <td th:text="${#strings.arrayJoin(movie.languages,'; ')}"></td>
+            <td th:text="${#strings.arrayJoin(movie.subtitles,'; ')}"></td>
+            <td th:text="${movie.price}"></td>
+
+
+        </tr>
+
+
+    </table>
+
+    <a
+            href="/home/">
+        <button>Back to Home</button>
+    </a>
+
+
+    </div>
+    </div>
+</div>
+</body>
+
+</html>

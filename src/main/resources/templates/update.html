@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<!--
+file html utilizzato per la modifica di un film tramite l'id del film selezionato nell'home. una volta confermata la modifica porta direttamente all'home
+
+
+-->
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>UPDATE</title>
+</head>
+
+
+
+<style>
+
+    body{
+        background-color:#59739e ;
+    }
+
+    table {
+        border-collapse: collapse;
+
+    }
+
+    td, th {
+        border: 4px solid #ddd;
+        padding: 2px;
+        height: 50px;
+        vertical-align: middle;
+        background-color: #93a9cf;
+    }
+</style>
+
+<body>
+
+<h1>Edit the Movie</h1>
+
+<form action="/update" method="POST">
+
+    <table>
+
+        <tr>
+            <th>Title</th>
+            <th>Duration</th>
+            <th>Genre</th>
+
+        </tr>
+        <tr>
+            <input type="text" style="display:none" th:value="${movie.id}" name="id"/>
+            <td><input type="text" th:value="${movie.title}"placeholder="title" name="title" /> </td>
+            <td><input type="number" th:value="${movie.duration}"placeholder="duration" name="duration" /> </td>
+            <td><input type="text" th:value="${movie.genre}"placeholder="genre" name="genre" /> </td>
+
+        </tr>
+
+
+        <tr>
+            <th>PublishYear</th>
+            <th>Actors</th>
+            <th>Description</th>
+
+        </tr>
+        <tr>
+            <td> <input type="number" th:value="${movie.publishYear}"placeholder="publishYear" name="publishYear" /></td>
+            <td><input type="text" th:value="${#strings.listJoin(movie.actors,'; ')}" placeholder="actors" name="actors" /> </td>
+            <td><input type="text" th:value="${movie.description}"placeholder="description" name="description" /> </td>
+
+        </tr>
+
+
+        <tr>
+
+            <th>Languages</th>
+            <th>Subtitles</th>
+            <th>Price</th>
+
+        </tr>
+        <tr>
+            <td><input type="text" th:value="${#strings.arrayJoin(movie.languages,'; ')}"placeholder="languages" name="languages" /> </td>
+            <td><input type="text" th:value="${#strings.arrayJoin(movie.subtitles,'; ')}"placeholder="subtitles" name="subtitles" /> </td>
+            <td><input step="0.01" type="number" th:value="${movie.price}"placeholder="price" name="price" /> </td>
+
+        </tr>
+
+
+
+    </table>
+
+    <input type="submit" value="update" />
+
+</form>
+
+
+
+
+
+
+
+</body>
+</html>
